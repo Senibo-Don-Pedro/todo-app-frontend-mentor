@@ -2,21 +2,33 @@ import { Button } from './ui/button'
 import { useSelector, useDispatch } from 'react-redux'
 import { removeTodo, checkTodo, clearCompleted } from '../store'
 
+interface Todo {
+  id: string
+  item: string
+  completed: boolean
+}
+
+interface RootState {
+  todo: {
+    todos: Todo[]
+  }
+}
+
 export function TodoList() {
   const dispatch = useDispatch()
-  const todos = useSelector((state) => state.todo.todos)
+  const todos = useSelector((state: RootState) => state.todo.todos)
 
-  const handleDelete = (todo) => {
+  const handleDelete = (todo: Todo) => {
     dispatch(removeTodo(todo.id))
   }
 
-  const handleCheck = (todo) => {
+  const handleCheck = (todo: Todo) => {
     dispatch(checkTodo(todo.id))
   }
 
   return (
     <>
-      <div className='mt-8 rounded wrapper bg-custom-VeryLightGray dark:bg-custom-VeryDarkBlue  shadow-2xl '>
+      <div className='mt-8 rounded shadow-2xl wrapper bg-custom-VeryLightGray dark:bg-custom-VeryDarkBlue '>
         {todos.map((todo) => {
           const { item, id, completed } = todo
           return (

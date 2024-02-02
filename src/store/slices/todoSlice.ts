@@ -1,10 +1,20 @@
 import { createSlice, nanoid } from '@reduxjs/toolkit'
 
+interface Todo {
+  item: string
+  id: string
+  completed: boolean
+}
+
+interface TodoState {
+  todos: Todo[]
+}
+
 const todoSlice = createSlice({
   name: 'todoList',
   initialState: {
     todos: [],
-  },
+  } as TodoState,
 
   reducers: {
     addTodo(state, action) {

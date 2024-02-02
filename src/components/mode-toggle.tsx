@@ -14,14 +14,14 @@ export function ModeToggle() {
         variant={'none'}
         onClick={() => setTheme('dark')}
       >
-        <Moon className='' />
+        <Moon />
       </Button>
       <Button
         className='hidden p-0 m-0 dark:block '
         variant={'none'}
         onClick={() => setTheme('light')}
       >
-        <Sun className='' />
+        <Sun />
       </Button>
     </>
   )
