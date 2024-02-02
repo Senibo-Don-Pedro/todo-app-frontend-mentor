@@ -26,8 +26,7 @@ module.exports = {
       colors: {
         custom: {
           BrightBlue: 'hsl(220, 98%, 61%)',
-          CheckBackground:
-            'linear-gradient hsl(192, 100%, 67%) to hsl(280, 87%, 65%)',
+
           VeryLightGray: 'hsl(0, 0%, 98%)',
           VeryLightGrayishBlue: 'hsl(236, 33%, 92%)',
           LightGrayishBlue: 'hsl(233, 11%, 84%)',

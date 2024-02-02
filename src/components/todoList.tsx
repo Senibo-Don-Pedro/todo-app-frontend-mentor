@@ -1,25 +1,68 @@
 import { Button } from './ui/button'
+import { useSelector, useDispatch } from 'react-redux'
+import { removeTodo, checkTodo, clearCompleted } from '../store'
 
 export function TodoList() {
+  const dispatch = useDispatch()
+  const todos = useSelector((state) => state.todo.todos)
+
+  const handleDelete = (todo) => {
+    dispatch(removeTodo(todo.id))
+  }
+
+  const handleCheck = (todo) => {
+    dispatch(checkTodo(todo.id))
+  }
+
   return (
     <>
-      <div className='mt-5 rounded wrapper bg-custom-VeryDarkBlue '>
-        <div className='flex items-center justify-between px-5 py-3 border-b-2 '>
-          <div className='flex items-center gap-7'>
-            <div className='grid w-10 h-10 border-2 rounded-full place-items-center'>
-              <img src='/images/icon-check.svg' />
-            </div>
-            <p className=''>seiff</p>
-          </div>
+      <div className='mt-8 rounded wrapper bg-custom-VeryLightGray dark:bg-custom-VeryDarkBlue  shadow-2xl '>
+        {todos.map((todo) => {
+          const { item, id, completed } = todo
+          return (
+            <div
+              key={id}
+              className='flex items-center justify-between px-5 py-3 border-b-2 '
+            >
+              <div className='flex items-center gap-5'>
+                <div
+                  onClick={() => handleCheck(todo)}
+                  className={`grid cursor-pointer w-10 h-10 border-2 rounded-full place-items-center ${
+                    completed ? 'bg-blue-500' : ''
+                  } `}
+                >
+                  {completed ? (
+                    <img className='' src='/images/icon-check.svg' />
+                  ) : null}
+                </div>
+                <p className={completed ? `line-through opacity-50 ` : ''}>
+                  {item}
+                </p>
+              </div>
 
-          <div>
-            <img src='/images/icon-cross.svg' />
+              <div
+                className='cursor-pointer'
+                onClick={() => handleDelete(todo)}
+              >
+                <img src='/images/icon-cross.svg' />
+              </div>
+            </div>
+          )
+        })}
+        {todos.length > 0 ? (
+          <div className='flex items-center justify-between py-3 pl-7'>
+            <p className='text-slate-500/70'>
+              {todos.filter((todo) => !todo.completed).length} items left
+            </p>
+            <Button
+              className='dark:hover:text-white text-slate-500/70 hover:text-black'
+              onClick={() => dispatch(clearCompleted())}
+              variant={'none'}
+            >
+              Clear Completed
+            </Button>
           </div>
-        </div>
-        <div className='flex items-center justify-between py-3 pl-7'>
-          <p className=''>5 items left</p>
-          <Button variant={'none'}>Clear Completed</Button>
-        </div>
+        ) : null}
       </div>
     </>
   )
