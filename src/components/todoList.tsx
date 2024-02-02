@@ -28,7 +28,7 @@ export function TodoList() {
 
   return (
     <>
-      <div className='mt-8 rounded shadow-2xl wrapper bg-custom-VeryLightGray dark:bg-custom-VeryDarkBlue '>
+      <div className='w-full mt-8 rounded shadow-2xl wrapper bg-custom-VeryLightGray dark:bg-custom-VeryDarkBlue '>
         {todos.map((todo) => {
           const { item, id, completed } = todo
           return (
@@ -36,20 +36,28 @@ export function TodoList() {
               key={id}
               className='flex items-center justify-between px-5 py-3 border-b-2 '
             >
-              <div className='flex items-center gap-5'>
+              <div className='flex items-center w-full '>
                 <div
                   onClick={() => handleCheck(todo)}
-                  className={`grid cursor-pointer w-10 h-10 border-2 rounded-full place-items-center ${
+                  className={`grid cursor-pointer w-10 h-10 border-2 rounded-full place-items-center mr-4 ${
                     completed ? 'bg-blue-500' : ''
                   } `}
                 >
                   {completed ? (
-                    <img className='' src='/images/icon-check.svg' />
+                    <img className='' src='/images/icon-check.svg ' />
                   ) : null}
                 </div>
-                <p className={completed ? `line-through opacity-50 ` : ''}>
-                  {item}
-                </p>
+                <div className=''>
+                  <p
+                    className={
+                      completed
+                        ? `line-through opacity-50 break-all `
+                        : ' break-all '
+                    }
+                  >
+                    {item}
+                  </p>
+                </div>
               </div>
 
               <div

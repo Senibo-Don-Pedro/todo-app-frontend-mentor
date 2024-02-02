@@ -21,7 +21,7 @@ export function InputForm() {
         value={item}
         onChange={(e) => setItem(e.target.value)}
         placeholder='Create a new todo . . .'
-        className='w-full pl-20 py-4  rounded-md outline-none text-md dark:text-custom-VeryLightGrayishBlue bg-custom-VeryLightGray dark:bg-custom-VeryDarkBlue placeholder:text-custom-DarkGrayishBlue/50 placeholder:relative placeholder:top-0.5 font-normal shadow-xl '
+        className='w-full pl-20 pr-8 py-4  rounded-md outline-none text-md dark:text-custom-VeryLightGrayishBlue bg-custom-VeryLightGray dark:bg-custom-VeryDarkBlue placeholder:text-custom-DarkGrayishBlue/50 placeholder:relative placeholder:top-0.5 font-normal shadow-xl '
       />
     </form>
   )
